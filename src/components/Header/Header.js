@@ -5,6 +5,7 @@ import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
 import UnstyledButton from '../UnstyledButton';
+import VisuallyHidden from '../VisuallyHidden';
 import Icon from '../Icon';
 
 const Header = () => {
@@ -31,12 +32,17 @@ const Header = () => {
         <IconsWrapper>
           <UnstyledButton>
             <Icon id="shopping-bag" strokeWidth={1} />
+            <VisuallyHidden>Shopping bag</VisuallyHidden>
           </UnstyledButton>
+
           <UnstyledButton>
             <Icon id="search" strokeWidth={1} />
+            <VisuallyHidden>Search</VisuallyHidden>
           </UnstyledButton>
+
           <UnstyledButton onClick={() => setShowMobileMenu(true)}>
             <Icon id="menu" strokeWidth={1} />
+            <VisuallyHidden>Menu</VisuallyHidden>
           </UnstyledButton>
         </IconsWrapper>
 
@@ -55,7 +61,6 @@ const MainHeader = styled.div`
   display: flex;
   align-items: baseline;
   padding: 18px 32px;
-  height: 72px;
   border-bottom: 1px solid var(--color-gray-300);
   overflow-x: auto;
 
@@ -64,7 +69,7 @@ const MainHeader = styled.div`
     border-top: 4px solid var(--color-gray-900);
   }
 
-  @media ${p => p.theme.queries.tablet} {
+  @media ${p => p.theme.queries.phone} {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -73,9 +78,9 @@ const MainHeader = styled.div`
 const Nav = styled.nav`
   display: flex;
   gap: clamp(
-    1.5rem,
-    9vw - 4rem,
-    8rem
+    1rem,
+    9.2vw - 4.5rem,
+    3.5rem
   );
   margin: 0px 48px;
 
@@ -91,11 +96,11 @@ const IconsWrapper = styled.div`
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
   }
 
   @media ${p => p.theme.queries.phone} {
-    gap: 24px;
+    gap: 16px;
   }
 `
 

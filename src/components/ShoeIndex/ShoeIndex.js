@@ -21,20 +21,24 @@ const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
       <MainColumn>
-        <BreadcrumbsTabletWrapper>
-          {breadcrumbsElt}
-        </BreadcrumbsTabletWrapper>
-
         <Header>
-          <Title>Running</Title>
+          <div>
+            <BreadcrumbsTabletWrapper>
+              {breadcrumbsElt}
+            </BreadcrumbsTabletWrapper>
 
-          <SelectWrapper
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
+            <Title>Running</Title>
+          </div>
+
+          <SelectWrapper>
+            <Select
+              label="Sort"
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value="newest">Newest Releases</option>
+              <option value="price">Price</option>
+            </Select>
           </SelectWrapper>
         </Header>
 
@@ -77,9 +81,13 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+
+  @media ${p => p.theme.queries.tablet} {
+    align-items: flex-end;
+  }
 `;
 
-const SelectWrapper = styled(Select)`
+const SelectWrapper = styled.div`
   @media ${p => p.theme.queries.phone} {
     display: none;
   }

@@ -18,19 +18,3 @@ export function pluralize(string, num) {
 export function isNewShoe(releaseDate) {
   return differenceInDays(new Date(), releaseDate) < 30;
 }
-
-export function formatAsCSSVariables(prefix, variables) {
-  return Object.entries(variables).reduce((acc, [name, value]) => {
-    if (typeof value === 'string' || typeof value === 'number') {
-      return {
-        ...acc,
-        [`--${prefix}-${name}`]: value,
-      }
-    }
-  
-    return {
-      ...acc,
-      ...formatAsCSSVariables(`${prefix}-${name}`, value),
-    }
-  }, { });
-}

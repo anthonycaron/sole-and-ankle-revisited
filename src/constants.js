@@ -27,4 +27,28 @@ export const QUERIES = {
   phone: `(max-width: ${BREAKPOINTS.phoneMax / 16}rem)`,
   tablet: `(max-width: ${BREAKPOINTS.tabletMax / 16}rem)`,
   laptop: `(max-width: ${BREAKPOINTS.laptopMax / 16}rem)`,
+};
+
+function formatAsCSSVariables(prefix, variables) {
+  return Object.entries(variables).reduce((acc, [name, value]) => {
+    if (typeof value === 'string' || typeof value === 'number') {
+      return {
+        ...acc,
+        [`--${prefix}-${name}`]: value,
+      }
+    }
+  
+    return {
+      ...acc,
+      ...formatAsCSSVariables(`${prefix}-${name}`, value),
+    }
+  }, { });
 }
+
+const colorsStyle = formatAsCSSVariables('color', COLORS);
+const weightsStyle = formatAsCSSVariables('weight', WEIGHTS);
+
+export const cssVariables = {
+  ...colorsStyle,
+  ...weightsStyle,
+};
